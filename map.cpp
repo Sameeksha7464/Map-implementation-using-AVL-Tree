@@ -3,25 +3,9 @@
 using namespace std;
 
 class Map {
-    //  This methods are not useful to users, therefore
-    // they are kept hidden
 private:
-    //   The const property is used to keep the "search"
-    //  method
-    // compatible with the method "const int&[]operator(int)
-    // const"
-
-    //  Since we are not allowed to change the class
-    // attributes in the method "const int&[]operator(int)
-    // const" we have to assure the compiler that method
-    // called(i.e "search") inside it also doesn't change
-    // the attributes of the class
-
     const int search(int first) const
     {
-        // A temporary variable was created so that we do not
-        // loose the "root" of the tree
-
         Map* temp = root;
 
         // Stop only when either the key is found or we
@@ -55,10 +39,6 @@ private:
 
         return 0;
     }
-
-    // A utiliity function to return the Map* object
-    // with its members initilized to default values except
-    // the key
 
     Map* create(int first)
     {
@@ -326,24 +306,6 @@ public:
     // invoked when any assignment is done
 
     int& operator[](int key) { return insert(key)->second; }
-
-    // Since we have two methods with the same name
-    // "[]operator(int)" and methods/functions cannot be
-    // distinguished by their return types it is mandatory
-    // to include a const qualifier at the end of any of the
-    // methods
-
-    // the compiler will call this by default when we are
-    // interested in only peeking the value
-
-    // It will not be called for assignment because
-    // it doesn't allow change member variables
-
-    // We cannot make it return by reference because the
-    // variable "temp" returned by the "search" method is
-    // statically allocated and therefore it's been
-    // destroyed when it is called out(stack frame is popped
-    // out)
 
     const int operator[](int key) const
     {
